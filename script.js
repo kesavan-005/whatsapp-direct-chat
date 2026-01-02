@@ -1,21 +1,39 @@
-function openChat() {
-  let cc = document.getElementById("countryCode").value.trim();
-  let mobile = document.getElementById("mobile").value.trim();
+const input = document.getElementById("number");
+const errorMsg = document.getElementById("errorMsg");
 
-  if (mobile === "") {
-    alert("Please enter a mobile number");
+// ENTER key support
+input.addEventListener("keydown", function(e){
+  if(e.key === "Enter"){
+    openChat();
+  }
+});
+
+function openChat(){
+  let num = input.value.trim();
+  errorMsg.textContent = "";
+
+  if(num === ""){
+    errorMsg.textContent = "Please enter a number";
     return;
   }
 
-  // Auto detect | If user enters only 10 digits assume India
-  if (mobile.length === 10 && cc === "") {
-    cc = "91";
+  num = num.replace(/\s+/g, "");   // remove spaces
+  num = num.replace(/\D+/g, "");   // remove non digits
+
+  // If 10 digits → assume India
+  if(num.length === 10){
+    num = "91" + num;
   }
 
-  // Remove + if user accidentally types
-  mobile = mobile.replace("+", "");
+  // If user entered 91XXXXXXXXXX keep it
+  // If user entered +91 it becomes 91 anyway above
 
-  const finalNumber = cc + mobile;
+  if(num.length < 12){
+    errorMsg.textContent = "Invalid number. Indian numbers must be 10 digits.";
+    return;
+  }
 
-  window.location.href = `https://wa.me/${finalNumber}`;
+  const finalURL = "https://wa.me/" + num;
+
+  window.open(finalURL, "_blank");
 }

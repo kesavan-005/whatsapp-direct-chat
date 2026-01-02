@@ -5,53 +5,36 @@
   <title>WhatsApp Direct Chat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;500;700&display=swap" rel="stylesheet">
 
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <div class="container">
-
     <div class="card glass-glow">
 
-      <img src="assets/logo.png" alt="Logo" class="logo">
+      <img src="assets/logo.png" class="logo">
 
       <h1 class="title">
         WhatsApp <span>Direct Chat</span>
       </h1>
 
       <p class="subtitle">
-        Enter phone number and chat instantly without saving contact
+        Enter phone number and chat instantly
       </p>
 
       <div class="flex-box">
-        <select id="countryCode">
-          <option value="91">🇮🇳 +91 (India)</option>
-          <option value="1">🇺🇸 +1 (USA)</option>
-          <option value="44">🇬🇧 +44 (UK)</option>
-          <option value="61">🇦🇺 +61 (Australia)</option>
-          <option value="971">🇦🇪 +971 (UAE)</option>
-        </select>
-
-        <input 
-          type="text" 
-          id="mobile"
-          placeholder="Enter mobile number"
-          maxlength="15"
-        >
+        <input type="text" id="number" placeholder="+91 or 91 or 10-digit number">
       </div>
 
       <button onclick="openChat()">Start Chat</button>
 
-      <small>Secure • Fast • No Contact Save Needed ✔️</small>
+      <small id="errorMsg"></small>
 
     </div>
   </div>
 
-  <!-- JS -->
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

@@ -4,12 +4,26 @@ const btn = document.getElementById("chatBtn");
 const box = document.getElementById("phoneBox");
 
 /* -------- WEBSITE LOADING -------- */
-window.onload = () => {
-  setTimeout(()=>{
-    document.getElementById("pageLoader").classList.add("hidden");
-    document.getElementById("appBody").classList.remove("hidden");
-  },800);
-};
+document.addEventListener("DOMContentLoaded", () => {
+
+  const loader = document.getElementById("pageLoader");
+  const app = document.getElementById("appBody");
+
+  // Small delay for smooth animation
+  setTimeout(() => {
+    loader.classList.add("hidden");
+    app.classList.remove("hidden");
+  }, 700);
+});
+
+/* -------- SAFETY FAILSAFE (if anything breaks) -------- */
+setTimeout(() => {
+  const loader = document.getElementById("pageLoader");
+  const app = document.getElementById("appBody");
+  if (loader) loader.classList.add("hidden");
+  if (app) app.classList.remove("hidden");
+}, 3000);
+
 
 /* -------- ENTER KEY -------- */
 input.addEventListener("keydown", e => {

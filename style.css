@@ -2,18 +2,18 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family: 'Urbanist', sans-serif;
+  font-family:'Urbanist',sans-serif;
 }
 
 body{
+  background: radial-gradient(circle at center,#022c22,#012315,#001a10);
   height:100vh;
-  width:100%;
-  background: linear-gradient(135deg, #064e3b 0%, #10b981 100%);
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
 }
 
+/* Center Layout */
 .container{
   display:flex;
   align-items:center;
@@ -21,52 +21,93 @@ body{
   width:100%;
 }
 
+/* Card */
 .card{
-  background:#012a1c;
+  width:380px;
   padding:40px;
   border-radius:22px;
-  width:360px;
   text-align:center;
-  box-shadow:0 0 40px rgba(0,0,0,.4);
   color:white;
+  position:relative;
 }
 
-h1{
+/* Neon Glow */
+.glass-glow{
+  background:rgba(1, 35, 20, 0.85);
+  backdrop-filter: blur(8px);
+  box-shadow:0 0 25px rgba(16,185,129,0.6),
+             0 0 60px rgba(0,255,170,0.4);
+}
+
+/* Logo */
+.logo{
+  width:110px;
   margin-bottom:10px;
+  filter:drop-shadow(0 0 15px #22c55e);
+}
+
+/* Heading */
+.title{
+  font-size:26px;
   font-weight:700;
 }
 
-p{
+.title span{
+  color:#22c55e;
+}
+
+/* Subtitle */
+.subtitle{
   color:#a7f3d0;
+  margin:10px 0 20px 0;
   font-weight:300;
 }
 
+/* Flex Box */
+.flex-box{
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+}
+
+select,
 input{
-  width:100%;
-  padding:13px;
+  padding:12px;
   border-radius:12px;
   border:none;
-  margin-top:15px;
   outline:none;
   font-size:16px;
 }
 
+select{
+  width:35%;
+  background:#022c22;
+  color:#d1fae5;
+  border:1px solid #16a34a;
+}
+
+input{
+  width:65%;
+}
+
+/* Button */
 button{
   width:100%;
-  background:#22c55e;
-  border:none;
   padding:13px;
+  margin-top:18px;
   border-radius:12px;
-  margin-top:15px;
-  font-size:16px;
+  border:none;
+  background:#22c55e;
+  font-size:17px;
+  font-weight:700;
   cursor:pointer;
   transition:0.3s;
-  font-weight:700;
 }
 
 button:hover{
   background:#16a34a;
   transform:scale(1.03);
+  box-shadow:0 0 20px #22c55e;
 }
 
 small{
@@ -74,3 +115,21 @@ small{
   margin-top:10px;
   color:#9be7c7;
 }
+
+/* 📱 Mobile Responsive */
+@media(max-width:480px){
+  .card{
+    width:90%;
+    padding:30px;
+  }
+  
+  .flex-box{
+    flex-direction:column;
+  }
+
+  select,
+  input{
+    width:100%;
+  }
+}
+    

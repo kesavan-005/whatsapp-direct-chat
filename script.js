@@ -1,16 +1,21 @@
 function openChat() {
-  let number = document.getElementById("number").value.trim();
+  let cc = document.getElementById("countryCode").value.trim();
+  let mobile = document.getElementById("mobile").value.trim();
 
-  if (number === "") {
-    alert("Please enter a WhatsApp number");
+  if (mobile === "") {
+    alert("Please enter a mobile number");
     return;
   }
 
-  if (number.length < 10) {
-    alert("Enter valid mobile number with country code");
-    return;
+  // Auto detect | If user enters only 10 digits assume India
+  if (mobile.length === 10 && cc === "") {
+    cc = "91";
   }
 
-  window.location.href = "https://wa.me/" + number;
+  // Remove + if user accidentally types
+  mobile = mobile.replace("+", "");
+
+  const finalNumber = cc + mobile;
+
+  window.location.href = `https://wa.me/${finalNumber}`;
 }
-

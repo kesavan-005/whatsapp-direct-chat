@@ -1,38 +1,83 @@
 const input = document.getElementById("number");
-const errorMsg = document.getElementById("errorMsg");
+const statusMsg = document.getElementById("statusMsg");
 const btn = document.getElementById("chatBtn");
+const box = document.getElementById("phoneBox");
 
-// ENTER key support
+/* -------- WEBSITE LOADING -------- */
+window.onload = () => {
+  setTimeout(()=>{
+    document.getElementById("pageLoader").classList.add("hidden");
+    document.getElementById("appBody").classList.remove("hidden");
+  },800);
+};
+
+/* -------- ENTER KEY -------- */
 input.addEventListener("keydown", e => {
   if(e.key === "Enter") openChat();
 });
 
 btn.addEventListener("click", openChat);
 
-function openChat(){
+/* -------- AUTO CLEAN ON INPUT -------- */
+input.addEventListener("input", () => {
+  let v = input.value;
+  v = v.replace(/\s+/g,"");
+  v = v.replace(/[^0-9+]/g,"");
+  input.value = v;
+});
 
+function vibrate(ms){
+  if(navigator.vibrate){
+    navigator.vibrate(ms);
+  }
+}
+
+function showError(msg){
+  statusMsg.style.color = "#ff8b8b";
+  statusMsg.textContent = msg;
+
+  box.classList.remove("success-glow");
+  box.classList.add("error-glow","shake");
+
+  vibrate(150);
+
+  setTimeout(()=> box.classList.remove("shake"),300);
+}
+
+function showSuccess(){
+  statusMsg.style.color = "#9ef7c9";
+  statusMsg.textContent = "Opening WhatsApp…";
+
+  box.classList.remove("error-glow");
+  box.classList.add("success-glow");
+
+  vibrate(70);
+}
+
+function openChat(){
   let num = input.value.trim();
-  errorMsg.textContent = "";
+  statusMsg.textContent = "";
 
   if(num === ""){
-    errorMsg.textContent = "Please enter a number";
+    showError("Please enter a number");
     return;
   }
 
-  num = num.replace(/\D+/g, ""); // remove non-digits
+  num = num.replace(/\D+/g,"");
 
-  // If user enters 10 digits → auto add Indian code
   if(num.length === 10){
     num = "91" + num;
   }
 
-  // If user enters +91 or 91 it stays correct above
-
   if(num.length !== 12){
-    errorMsg.textContent = "Invalid number. Enter valid 10-digit Indian number.";
+    showError("Invalid number. Enter valid 10-digit Indian number.");
     return;
   }
 
-  const url = `https://wa.me/${num}`;
-  window.open(url, "_blank");
+  showSuccess();
+
+  setTimeout(()=>{
+    const url = `https://wa.me/${num}`;
+    window.open(url,"_blank");
+  },300);
 }

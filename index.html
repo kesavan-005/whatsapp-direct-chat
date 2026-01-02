@@ -5,15 +5,31 @@
   <title>WhatsApp Direct Chat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#16a34a">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;500;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 
 <body>
 
-  <div class="container">
-    <div class="card glass">
+  <!-- WEBSITE LOADER -->
+  <div id="pageLoader">
+      <div class="spinner"></div>
+      <p>Loading WhatsApp Direct Chat…</p>
+  </div>
+
+  <div class="container hidden" id="appBody">
+    <div class="card glass" id="card">
 
       <img src="assets/logo.png" class="logo">
 
@@ -22,22 +38,36 @@
       </h1>
 
       <p class="subtitle">
-        Enter number & chat instantly
+        Enter number & chat instantly — no saving required
       </p>
 
-      <!-- PHONE INPUT GROUP -->
-      <div class="phone-box">
+      <!-- PHONE INPUT -->
+      <div class="phone-box" id="phoneBox">
         <div class="code">+91</div>
         <input type="text" id="number" placeholder="Enter 10-digit mobile number">
       </div>
 
       <button id="chatBtn">Start Chat</button>
 
-      <small id="errorMsg"></small>
+      <p class="status" id="statusMsg"></p>
 
+      <small class="trust">
+        Secure • No data stored • Direct WhatsApp communication
+      </small>
+
+      <footer>
+        Made with ❤️ for India • Powered by Kesavan
+      </footer>
     </div>
   </div>
 
-<script src="script.js"></script>
+<script src="script.js?v=4"></script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js")
+  }
+</script>
+
 </body>
 </html>

@@ -11,8 +11,9 @@
 </head>
 
 <body>
+
   <div class="container">
-    <div class="card glass-glow">
+    <div class="card glass">
 
       <img src="assets/logo.png" class="logo">
 
@@ -21,14 +22,16 @@
       </h1>
 
       <p class="subtitle">
-        Enter phone number and chat instantly
+        Enter number & chat instantly
       </p>
 
-      <div class="flex-box">
-        <input type="text" id="number" placeholder="+91 or 91 or 10-digit number">
+      <!-- PHONE INPUT GROUP -->
+      <div class="phone-box">
+        <div class="code">+91</div>
+        <input type="text" id="number" placeholder="Enter 10-digit mobile number">
       </div>
 
-      <button onclick="openChat()">Start Chat</button>
+      <button id="chatBtn">Start Chat</button>
 
       <small id="errorMsg"></small>
 

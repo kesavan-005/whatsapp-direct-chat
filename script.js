@@ -1,14 +1,16 @@
 const input = document.getElementById("number");
 const errorMsg = document.getElementById("errorMsg");
+const btn = document.getElementById("chatBtn");
 
 // ENTER key support
-input.addEventListener("keydown", function(e){
-  if(e.key === "Enter"){
-    openChat();
-  }
+input.addEventListener("keydown", e => {
+  if(e.key === "Enter") openChat();
 });
 
+btn.addEventListener("click", openChat);
+
 function openChat(){
+
   let num = input.value.trim();
   errorMsg.textContent = "";
 
@@ -17,23 +19,20 @@ function openChat(){
     return;
   }
 
-  num = num.replace(/\s+/g, "");   // remove spaces
-  num = num.replace(/\D+/g, "");   // remove non digits
+  num = num.replace(/\D+/g, ""); // remove non-digits
 
-  // If 10 digits → assume India
+  // If user enters 10 digits → auto add Indian code
   if(num.length === 10){
     num = "91" + num;
   }
 
-  // If user entered 91XXXXXXXXXX keep it
-  // If user entered +91 it becomes 91 anyway above
+  // If user enters +91 or 91 it stays correct above
 
-  if(num.length < 12){
-    errorMsg.textContent = "Invalid number. Indian numbers must be 10 digits.";
+  if(num.length !== 12){
+    errorMsg.textContent = "Invalid number. Enter valid 10-digit Indian number.";
     return;
   }
 
-  const finalURL = "https://wa.me/" + num;
-
-  window.open(finalURL, "_blank");
+  const url = `https://wa.me/${num}`;
+  window.open(url, "_blank");
 }
